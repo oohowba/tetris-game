@@ -17,93 +17,129 @@
         body {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: 'Orbitron', monospace;
             overflow: hidden;
-            touch-action: manipulation;
+            touch-action: none;
+        }
+
+        html {
+            height: -webkit-fill-available;
         }
 
         .game-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
+            gap: 10px;
+            padding: 10px;
             width: 100%;
-            max-width: 500px;
+            height: 100vh;
+            height: -webkit-fill-available;
+            max-width: 400px;
         }
 
         .top-panel {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             width: 100%;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .panel-box {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 10px 20px;
+            border-radius: 10px;
+            padding: 8px 15px;
             border: 2px solid rgba(233, 69, 96, 0.3);
             text-align: center;
             flex: 1;
-            max-width: 100px;
+            max-width: 90px;
         }
 
         .panel-title {
             color: #e94560;
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .panel-value {
             color: #fff;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             text-shadow: 0 0 10px rgba(233, 69, 96, 0.8);
         }
 
         .game-area {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: flex-start;
+            flex: 1;
+            min-height: 0;
         }
 
         .game-board {
             position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
         #tetris {
-            border: 4px solid #e94560;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(233, 69, 96, 0.5),
-                        inset 0 0 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid #e94560;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.5),
+                        inset 0 0 20px rgba(0, 0, 0, 0.5);
+            max-height: 100%;
+            touch-action: none;
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .next-box {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 8px;
             border: 2px solid rgba(233, 69, 96, 0.3);
         }
 
         .next-title {
             color: #e94560;
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             text-align: center;
         }
 
         #next-piece {
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hint-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid rgba(233, 69, 96, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        .hint-box span {
+            color: #e94560;
         }
 
         .game-over-overlay {
@@ -117,8 +153,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border-radius: 10px;
-            gap: 20px;
+            border-radius: 8px;
+            gap: 15px;
             z-index: 100;
         }
 
@@ -128,7 +164,7 @@
 
         .game-over-text {
             color: #e94560;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             text-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
             animation: pulse 1s infinite;
@@ -136,7 +172,7 @@
 
         .final-score {
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         @keyframes pulse {
@@ -148,11 +184,11 @@
             background: linear-gradient(135deg, #e94560, #ff6b6b);
             border: none;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             font-family: 'Orbitron', monospace;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -160,97 +196,10 @@
             box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
         }
 
-        .restart-btn:hover, .restart-btn:active {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
-        }
-
-        /* Mobile Controls */
-        .mobile-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            max-width: 320px;
-            margin-top: 10px;
-        }
-
-        .control-row {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .mobile-btn {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(145deg, rgba(233, 69, 96, 0.3), rgba(233, 69, 96, 0.1));
-            border: 3px solid #e94560;
-            border-radius: 18px;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            transition: all 0.1s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .mobile-btn:active {
-            background: #e94560;
+        .restart-btn:active {
             transform: scale(0.95);
-            box-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
         }
 
-        .mobile-btn.wide {
-            width: 150px;
-        }
-
-        .mobile-btn.drop {
-            background: linear-gradient(145deg, rgba(255, 107, 107, 0.4), rgba(233, 69, 96, 0.2));
-        }
-
-        /* Desktop hint - hidden on mobile */
-        .desktop-hint {
-            display: none;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 11px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        @media (min-width: 768px) {
-            .game-wrapper {
-                max-width: 600px;
-            }
-            
-            #tetris {
-                width: 300px;
-                height: 600px;
-            }
-
-            .mobile-controls {
-                max-width: 400px;
-            }
-
-            .mobile-btn {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
-            }
-
-            .mobile-btn.wide {
-                width: 170px;
-            }
-
-            .desktop-hint {
-                display: block;
-            }
-        }
-
-        /* Pause overlay */
         .pause-overlay {
             position: absolute;
             top: 0;
@@ -261,8 +210,10 @@
             display: none;
             justify-content: center;
             align-items: center;
-            border-radius: 10px;
+            flex-direction: column;
+            border-radius: 8px;
             z-index: 50;
+            gap: 15px;
         }
 
         .pause-overlay.show {
@@ -271,13 +222,78 @@
 
         .pause-text {
             color: #fff;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .resume-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-family: 'Orbitron', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .bottom-controls {
+            display: flex;
+            gap: 15px;
+            flex-shrink: 0;
+            padding: 10px 0;
+        }
+
+        .control-btn {
+            background: rgba(233, 69, 96, 0.2);
+            border: 2px solid #e94560;
+            border-radius: 12px;
+            color: white;
+            padding: 10px 20px;
+            font-family: 'Orbitron', monospace;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .control-btn:active {
+            background: #e94560;
+        }
+
+        .gesture-hint {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+            text-align: center;
+            flex-shrink: 0;
+            padding-bottom: 10px;
+        }
+
+        .gesture-hint span {
+            color: #e94560;
+        }
+
+        /* Swipe indicator */
+        .swipe-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
+            z-index: 200;
+        }
+
+        .swipe-indicator.show {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
+    <div class="swipe-indicator" id="swipe-indicator"></div>
+    
     <div class="game-wrapper">
         <div class="top-panel">
             <div class="panel-box">
@@ -296,39 +312,38 @@
 
         <div class="game-area">
             <div class="game-board">
-                <canvas id="tetris" width="240" height="480"></canvas>
+                <canvas id="tetris"></canvas>
                 <div class="game-over-overlay" id="game-over">
                     <div class="game-over-text">GAME OVER</div>
                     <div class="final-score">分數：<span id="final-score">0</span></div>
-                    <button class="restart-btn" ontouchstart="restartGame()" onclick="restartGame()">再玩一次</button>
+                    <button class="restart-btn" id="restart-btn">再玩一次</button>
                 </div>
                 <div class="pause-overlay" id="pause-overlay">
                     <div class="pause-text">⏸️ 暫停</div>
+                    <button class="resume-btn" id="resume-btn">繼續</button>
                 </div>
             </div>
-            <div class="next-box">
-                <div class="next-title">下一個</div>
-                <canvas id="next-piece" width="80" height="80"></canvas>
+            <div class="side-panel">
+                <div class="next-box">
+                    <div class="next-title">下一個</div>
+                    <canvas id="next-piece" width="60" height="60"></canvas>
+                </div>
+                <div class="hint-box">
+                    <span>點擊</span> 旋轉<br>
+                    <span>←→</span> 滑動移動<br>
+                    <span>↓</span> 滑動加速<br>
+                    <span>↓↓</span> 快速滑落下
+                </div>
             </div>
         </div>
 
-        <div class="mobile-controls">
-            <div class="control-row">
-                <button class="mobile-btn" ontouchstart="handleTouch(event, 'rotate')" onclick="rotate()">↻</button>
-            </div>
-            <div class="control-row">
-                <button class="mobile-btn" ontouchstart="handleTouch(event, 'left')" onclick="moveLeft()">←</button>
-                <button class="mobile-btn" ontouchstart="handleTouch(event, 'down')" onclick="moveDown()">↓</button>
-                <button class="mobile-btn" ontouchstart="handleTouch(event, 'right')" onclick="moveRight()">→</button>
-            </div>
-            <div class="control-row">
-                <button class="mobile-btn wide drop" ontouchstart="handleTouch(event, 'drop')" onclick="hardDrop()">⬇ 落下</button>
-                <button class="mobile-btn" ontouchstart="handleTouch(event, 'pause')" onclick="togglePause()">⏸</button>
-            </div>
+        <div class="bottom-controls">
+            <button class="control-btn" id="drop-btn">⬇ 落下</button>
+            <button class="control-btn" id="pause-btn">⏸ 暫停</button>
         </div>
 
-        <div class="desktop-hint">
-            電腦：← → 移動 ｜ ↑ 旋轉 ｜ ↓ 加速 ｜ 空白鍵 落下 ｜ P 暫停
+        <div class="gesture-hint">
+            在遊戲區 <span>點擊</span>=旋轉 | <span>滑動</span>=移動
         </div>
     </div>
 
@@ -340,7 +355,7 @@
 
         const COLS = 10;
         const ROWS = 20;
-        const BLOCK_SIZE = canvas.width / COLS;
+        let BLOCK_SIZE;
 
         const COLORS = [
             null,
@@ -375,22 +390,124 @@
         let dropInterval = 1000;
         let lastDrop = 0;
 
-        // Prevent scrolling on touch
+        // Touch handling
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let isSwiping = false;
+        const SWIPE_THRESHOLD = 30;
+        const TAP_THRESHOLD = 200;
+
+        function resizeCanvas() {
+            const wrapper = document.querySelector('.game-wrapper');
+            const gameArea = document.querySelector('.game-area');
+            const topPanel = document.querySelector('.top-panel');
+            const bottomControls = document.querySelector('.bottom-controls');
+            const gestureHint = document.querySelector('.gesture-hint');
+            
+            const availableHeight = window.innerHeight - topPanel.offsetHeight - bottomControls.offsetHeight - gestureHint.offsetHeight - 60;
+            const availableWidth = window.innerWidth - 120; // Side panel space
+            
+            const maxHeight = Math.min(availableHeight, 500);
+            const maxWidth = Math.min(availableWidth, 250);
+            
+            const heightBasedWidth = maxHeight / 2;
+            const widthBasedHeight = maxWidth * 2;
+            
+            let canvasWidth, canvasHeight;
+            
+            if (heightBasedWidth <= maxWidth) {
+                canvasWidth = heightBasedWidth;
+                canvasHeight = maxHeight;
+            } else {
+                canvasWidth = maxWidth;
+                canvasHeight = widthBasedHeight;
+            }
+            
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            BLOCK_SIZE = canvasWidth / COLS;
+        }
+
+        function showSwipeIndicator(icon) {
+            const indicator = document.getElementById('swipe-indicator');
+            indicator.textContent = icon;
+            indicator.classList.add('show');
+            setTimeout(() => indicator.classList.remove('show'), 150);
+        }
+
+        function handleTouchStart(e) {
+            if (gameOver || paused) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            touchStartTime = Date.now();
+            isSwiping = false;
+        }
+
+        function handleTouchMove(e) {
+            if (gameOver || paused) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - touchStartX;
+            const deltaY = touch.clientY - touchStartY;
+            
+            if (Math.abs(deltaX) > SWIPE_THRESHOLD && !isSwiping) {
+                isSwiping = true;
+                if (deltaX > 0) {
+                    moveRight();
+                    showSwipeIndicator('→');
+                } else {
+                    moveLeft();
+                    showSwipeIndicator('←');
+                }
+                touchStartX = touch.clientX;
+            }
+            
+            if (deltaY > SWIPE_THRESHOLD && !isSwiping) {
+                isSwiping = true;
+                moveDown();
+                showSwipeIndicator('↓');
+                touchStartY = touch.clientY;
+            }
+        }
+
+        function handleTouchEnd(e) {
+            if (gameOver || paused) return;
+            e.preventDefault();
+            
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // Tap to rotate
+            if (!isSwiping && touchDuration < TAP_THRESHOLD) {
+                rotate();
+                showSwipeIndicator('↻');
+            }
+        }
+
+        canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+        canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+        canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+        // Prevent scrolling
         document.body.addEventListener('touchmove', function(e) {
             e.preventDefault();
         }, { passive: false });
 
-        function handleTouch(e, action) {
-            e.preventDefault();
-            switch(action) {
-                case 'left': moveLeft(); break;
-                case 'right': moveRight(); break;
-                case 'down': moveDown(); break;
-                case 'rotate': rotate(); break;
-                case 'drop': hardDrop(); break;
-                case 'pause': togglePause(); break;
-            }
-        }
+        // Button controls
+        document.getElementById('drop-btn').addEventListener('click', hardDrop);
+        document.getElementById('drop-btn').addEventListener('touchstart', (e) => { e.preventDefault(); hardDrop(); });
+        
+        document.getElementById('pause-btn').addEventListener('click', togglePause);
+        document.getElementById('pause-btn').addEventListener('touchstart', (e) => { e.preventDefault(); togglePause(); });
+        
+        document.getElementById('restart-btn').addEventListener('click', restartGame);
+        document.getElementById('restart-btn').addEventListener('touchstart', (e) => { e.preventDefault(); restartGame(); });
+        
+        document.getElementById('resume-btn').addEventListener('click', togglePause);
+        document.getElementById('resume-btn').addEventListener('touchstart', (e) => { e.preventDefault(); togglePause(); });
 
         function createBoard() {
             board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
@@ -410,8 +527,8 @@
             context.fillRect(x * size + 1, y * size + 1, size - 2, size - 2);
             
             context.strokeStyle = shadeColor(color, 30);
-            context.lineWidth = 2;
-            context.strokeRect(x * size + 2, y * size + 2, size - 4, size - 4);
+            context.lineWidth = 1;
+            context.strokeRect(x * size + 1, y * size + 1, size - 2, size - 2);
         }
 
         function shadeColor(color, percent) {
@@ -432,7 +549,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Draw grid
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
             ctx.lineWidth = 1;
             for (let x = 0; x <= COLS; x++) {
                 ctx.beginPath();
@@ -462,7 +579,7 @@
                 while (!collision(currentPiece, { x: currentPos.x, y: ghostY + 1 })) {
                     ghostY++;
                 }
-                ctx.globalAlpha = 0.3;
+                ctx.globalAlpha = 0.2;
                 for (let y = 0; y < currentPiece.length; y++) {
                     for (let x = 0; x < currentPiece[y].length; x++) {
                         if (currentPiece[y][x]) {
@@ -486,11 +603,11 @@
         }
 
         function drawNextPiece() {
+            const size = 14;
             nextCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
             nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
 
             if (nextPiece) {
-                const size = 18;
                 const offsetX = (nextCanvas.width - nextPiece[0].length * size) / 2;
                 const offsetY = (nextCanvas.height - nextPiece.length * size) / 2;
 
@@ -621,7 +738,6 @@
                 const oldPiece = currentPiece;
                 currentPiece = rotated;
                 
-                // Wall kick - try to fit the piece
                 if (collision(currentPiece, currentPos)) {
                     currentPos.x++;
                     if (collision(currentPiece, currentPos)) {
@@ -691,6 +807,9 @@
             requestAnimationFrame(gameLoop);
         }
 
+        window.addEventListener('resize', resizeCanvas);
+        
+        resizeCanvas();
         createBoard();
         spawnPiece();
         updateUI();
